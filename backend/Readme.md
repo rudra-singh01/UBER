@@ -19,7 +19,6 @@ Yeh fields required hain:
 - **password**: String (minimum 6 characters)
 
 ### Example Request Body
-
 json
 {
 "fullname": {
@@ -103,3 +102,57 @@ Is file ko backend/README.md ke naam se save kar sakte hain. Isme aapke endpoint
 
 - Ensure that all fields are provided in the request body.
 - Passwords are hashed before being stored in the database.
+
+## User Login Endpoint
+
+## Endpoint
+
+`POST /users/login`
+
+## Description
+
+Yeh endpoint existing user ko login karne ke liye use hota hai. User ko apne email aur password provide karne hote hain.
+
+## Request Body
+
+Yeh fields required hain:
+
+- **email**: String (valid email format)
+- **password**: String (minimum 6 characters)
+
+### Example Request Body
+
+json
+{
+"email": "john.doe@example.com",
+"password": "securepassword"
+}
+
+### Success Response
+
+- **Code**: 200
+- **Content**:
+json
+{
+"token": "JWT_TOKEN",
+"user": {
+"fullname": {
+"firstname": "John",
+"lastname": "Doe"
+},
+"email": "john.doe@example.com"
+}
+}
+json
+{
+"errors": [
+{
+"msg": "Please enter a valid email",
+"param": "email"
+},
+{
+"msg": "Password must be at least 6 characters long",
+"param": "password"
+}
+]
+}
