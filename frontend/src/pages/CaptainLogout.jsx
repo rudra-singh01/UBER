@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const UserLogout = () => {
+const CaptainLogout = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -10,14 +10,14 @@ const UserLogout = () => {
 
         const logout = async () => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/users/logout`, {
+                const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/captains/logout`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
                 if (response.status === 200) {
                     localStorage.removeItem('token')
-                    navigate('/login')
+                    navigate('/captainlogin')
                 }
             } catch (error) {
                 console.error("Logout failed", error);
@@ -32,4 +32,5 @@ const UserLogout = () => {
     )
 }
 
-export default UserLogout
+
+export default CaptainLogout
