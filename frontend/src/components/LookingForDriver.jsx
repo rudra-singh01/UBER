@@ -31,21 +31,21 @@ const LookingForDriver = (props) => {
           <div className=" flex items-center p-3  gap-5 border-b-2 ">
             <MapPinHouse size={34} />
             <div className="">
-              <h3 className="text-xl font-medium">562/11-A</h3>
-              <p className="text-sm text-gray-600">kankariya talab,ahemdabad</p>
+              <h3 className="text-xl font-medium">{props.pickup}</h3>
             </div>
           </div>
           <div className=" flex items-center p-3  gap-5 border-b-2 ">
             <MapPinCheck size={34} />
             <div className="">
-              <h3 className="text-xl font-medium">562/11-A</h3>
-              <p className="text-sm text-gray-600">kankariya talab,ahemdabad</p>
+              <h3 className="text-xl font-medium">{props.destination}</h3>
             </div>
           </div>
           <div className=" flex items-center p-3  gap-5 border-b-2 ">
             <HandCoinsIcon size={34} />
             <div className="">
-              <h3 className="text-xl font-medium">₹193</h3>
+              <h3 className="text-xl font-medium">
+                ₹{props.fare[props.vehicelType]}
+              </h3>
               <p className="text-sm text-gray-600">Cash</p>
             </div>
           </div>

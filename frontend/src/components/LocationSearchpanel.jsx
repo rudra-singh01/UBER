@@ -1,28 +1,40 @@
-import {MapPin} from 'lucide-react';
+import { MapPin } from "lucide-react";
+import React from "react";
 
-const LocationSearchpanel = (props) => {
-  
-  const locations = [
-    {id: 1, name: "b-145 , arjun park , najafgarh , new delhi"},
-    {id: 2, name: "b-145 , arjun park , najafgarh , new delhi"},
-    {id: 3, name: "c-123 , green valley , dwarka , new delhi"},
-    {id: 4, name: "a-678 , sector 11 , rohini , new delhi"},
-  ];
-
+const LocationSearchPanel = ({
+  suggestions,
+  setVehiclePanel,
+  setPanelOpen,
+  setPickup,
+  setDestination,
+  activeField,
+}) => {
+  const handleSuggestionClick = (suggestion) => {
+    if (activeField === "pickup") {
+      setPickup(suggestion.description); // Use description
+    } else if (activeField === "destination") {
+      setDestination(suggestion.description); // Use description
+    }
+    // setPanelOpen(false);
+    // setVehiclePanel(true);
+  };
 
   return (
-    <div>
-        {locations.map((location) => (
-            <div onClick={()=>{
-              props.setVehiclePanel(true);
-              props.setPanelOpen(false);
-            }} key={location.id} className="flex items-center justify-start gap-2 my-5 border-2 rounded-xl p-2 active:border-black">
-                <MapPin/>
-                <h4>{location.name}</h4>
-            </div>
-        ))}
+    <div className="max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+      {suggestions.map((elem, idx) => (
+        <div
+          key={elem.place_id || idx}
+          onClick={() => handleSuggestionClick(elem)}
+          className="flex gap-4 border-2 p-3 border-gray-50 hover:border-black rounded-xl items-center my-2 justify-start"
+        >
+          <h2 className="bg-[#eee] h-8 flex items-center justify-center w-12 rounded-full">
+            <MapPin />
+          </h2>
+          <h4 className="font-medium">{elem.description}</h4>
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default LocationSearchpanel
+export default LocationSearchPanel;
